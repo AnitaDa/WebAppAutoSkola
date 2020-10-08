@@ -1,0 +1,21 @@
+﻿@model EAutoSkola.ViewModel.ZaboravljenaLozinkaViewModel;
+
+    <div class="divForme">
+        <h2>Izmjena lozinke</h2>
+        <form class="ZaboravljenaLozinka" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Token" type="hidden" />
+            <input asp-for="Email" type="hidden" />
+            <div class="form-group">
+                <label asp-for="Lozinka"></label>
+                <input asp-for="Lozinka" />
+                <span asp-validation-for="Lozinka"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PotvrdaLozinke"></label>
+                <input asp-for="PotvrdaLozinke" />
+                <span asp-validation-for="PotvrdaLozinke"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Izmjeni</button>
+        </form>
+    </div>

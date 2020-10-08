@@ -1,0 +1,22 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewData["Title"] = "KreirajRaspoeredCasovaForm";
+}
+<div class="divForme">
+    <h2>Kreiraj raspored</h2>
+
+    <form action="/RasporedCasova/KreirajRaspored">
+        <div class="form-group">
+            <label>Odaberite kandidata</label>
+
+            <select class="form-control" name="KandidatId">
+
+                @foreach (var kand in Model.Kandidati)
+                {
+                    <option value="@kand.Id">@kand.ImePrezime</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Sacuvaj raspored</button>
+    </form>
+ </div>

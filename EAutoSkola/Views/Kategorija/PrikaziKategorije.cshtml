@@ -1,0 +1,36 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewBag.Title = "DodajKategorijuForm";
+     Layout = "_LayoutReferent";
+   
+}
+
+<h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">Kategorije</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Naziv</th>
+            <th scope="col">Opis</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var kategorija in Model.Kategorije)
+    {
+        <tbody>
+            <tr>
+                <td>@kategorija.Naziv</td>
+                <td>@kategorija.Opis</td>
+                <td><a asp-controller="Kategorija" asp-action="UrediKategoriju" asp-route-KategorijaId="@kategorija.Id" class="btn btn-primary">Uredi</a></td>
+                <td><a asp-controller="Kategorija" asp-action="ObrisiKategoriju" asp-route-KategorijaId="@kategorija.Id" class="btn btn-danger">Obrisi</a></td>
+            </tr>
+        </tbody>
+        }
+
+
+</table>
+<a asp-controller="Kategorija" asp-action="DodajKategorijuForm" class="btn btn-primary">Dodaj kategoriju</a>

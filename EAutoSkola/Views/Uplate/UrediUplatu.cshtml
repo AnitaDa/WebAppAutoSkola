@@ -1,0 +1,62 @@
+﻿@using  EAutoSkola.Models;
+@model EAutoSkola.ViewModel.UplateViewModel;
+@{
+    Layout = "_LayoutReferent";
+}
+<div class="divForme">
+    <h2>UrediUplatu</h2>
+
+
+    <form action="/Uplate/DodajUredjenuUplatu">
+        <input type="hidden" class="form-control" name="UplataId" value="@Model.uplata.Id">
+        <div class="form-group">
+            <label>Datum uplate</label>
+            <input type="date" class="form-control" name="Datum" value="@Model.uplata.DatumUplate">
+        </div>
+        <div class="form-group">
+            <label>Iznos</label>
+            <input type="text" class="form-control" name="IznosUplate" value="@Model.uplata.Iznos">
+        </div>
+        <div class="form-group">
+            <label>Svrha uplate</label>
+            <input type="text" class="form-control" name="Svrha" value="@Model.uplata.Svrha">
+        </div>
+        <div class="form-group">
+            <label>Odaberite kandidata</label>
+
+            <select class="form-control" name="KandidatId">
+
+                @foreach (var kand in @Model.kandidats)
+                {
+                    if (@Model.uplata.KandidatId == kand.Id)
+                    {
+                        <option value="@kand.Id" selected="selected">@kand.ImePrezime</option>  
+
+                    }
+                    else
+                    {
+                        <option value="@kand.Id">@kand.ImePrezime</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Referent koji unosi uplatu</label>
+
+            <select class="form-control" name="ReferentId">
+                @foreach (var refe in @Model.TipUposlenikaUposlenici)
+                {
+                    if (refe.Id == @Model.uplata.UposlenikId)
+                    {
+                        <option value="@refe.Uposlenik.Id" selected="selected">@refe.Uposlenik.ImePrezime</option>
+                    }
+                    else
+                    {
+                        <option value="@refe.Uposlenik.Id">@refe.Uposlenik.ImePrezime</option>
+                    }
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn bg-primary">Sacuvaj</button>
+    </form>
+    </div>

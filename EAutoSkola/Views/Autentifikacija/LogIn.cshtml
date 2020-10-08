@@ -1,0 +1,58 @@
+﻿@model EAutoSkola.ViewModel.LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_LayoutPocetni";
+}
+
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+
+
+
+<script src="~/js/Validacija.js"></script>
+
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="~/images/automobil.PNG" alt="" />
+            <h3>Dobrodošli!</h3>
+            <p>Nemate vozačku dozvolu? Na pravom ste mjestu!</p>
+            <a class="btnRegister" href="/Autentifikacija/Registracija">Registruj se</a><br />
+        </div>
+        <div class="col-md-9 register-right">
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <form id="prijava" method="post">
+                        <h3 class="register-heading">Prijavi se!</h3>
+
+                        <div class="row register-form">
+                            <div class="col-md-6" style="left:170px;">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-group">
+                                    <input asp-for="Email" name="Email" class="form-control" placeholder="Email *" />
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Lozinka" class="form-control" placeholder="Lozinka *" />
+                                </div>
+                                <input type="submit" class="btnRegister" value="Prijavi se" />
+                                <div>
+                                    <a asp-controller="Autentifikacija" asp-action="ZaboravljenaLozinka"> Zaboravili ste lozinku?</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

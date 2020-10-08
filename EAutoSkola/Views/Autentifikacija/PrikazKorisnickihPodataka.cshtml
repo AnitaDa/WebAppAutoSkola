@@ -1,0 +1,23 @@
+﻿@model EAutoSkola.ViewModel.IzmjenaPodatakaKorisnikaVM;
+
+<h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+    Korisnički podaci
+</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Korisničko ime</th>
+            <td>@Model.KorisnickoIme</td>
+        </tr>
+        <tr>
+            <th scope="col">Email</th>
+            <td>@Model.Email</td>
+        </tr>
+</table>
+
+<a asp-controller="Autentifikacija" asp-action="IzmjenaProfila" class="btn btn-primary">Izmjeni</a>

@@ -1,0 +1,22 @@
+﻿@model EAutoSkola.ViewModel.VozilaDetaljiViewModel;
+@{ 
+ ViewBag.Title = "DetaljiVozila";
+    var photoPath = "~/Images/" + (Model.Vozilo.PhotoPath ?? "noimage.jpg");
+}
+
+        <div class="spoljni">
+            <h2>Detalji vozila</h2>
+            <div class="detaljiVozila">
+                <div id="divSlikaVozila">
+                    <img src="@photoPath" asp-append-version="true" />
+                </div>
+                <div id="textDetaliVozila">
+                    <h4><b>Model:</b>  @Model.Vozilo.Model</h4>
+                    <h4><b>Marka:</b>  @Model.Vozilo.Marka</h4>
+                    <h4><b>Godina proizvodnje:</b>  @Model.Vozilo.GodinaProizvodnje</h4>
+                    <h4><b>Registarska oznaka:</b>  @Model.Vozilo.RegistarskaOznaka</h4>
+                    <h4><b>Kategorija:</b>  @Model.Vozilo.Kategorija.Naziv</h4>
+                </div>
+               
+            </div>
+        </div>

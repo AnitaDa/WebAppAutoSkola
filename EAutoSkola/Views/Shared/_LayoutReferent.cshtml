@@ -1,0 +1,90 @@
+﻿@{ 
+    var email = ViewBag.Email;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EAutoSkola</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+       
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background:-webkit-linear-gradient(left, #3931af, #00c6ff)" >
+        <div class="container">
+            <div class="navbar-header">
+               
+                <a style="color: azure"  asp-area="" asp-controller="Referent" asp-action="PocetnaReferent" class="navbar-brand">EAutoSkola</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a style="color: azure" asp-area="" asp-controller="Kategorija" asp-action="PrikaziKategorije">Kategorije</a></li>
+                    <li><a style="color: azure" asp-area="" asp-controller="Usluge" asp-action="PrikaziUsluge">Usluge</a></li>
+                    <li><a style="color: azure" asp-area="" asp-controller="Vozila" asp-action="PrikaziVozila">Vozila</a></li>
+                    <li><a style="color: azure" asp-area="" asp-controller="Uplate" asp-action="PrikaziUplate">Uplate</a></li>
+                    <li><a style="color: azure" asp-area="" asp-controller="RasporedCasova" asp-action="PrikaziRaspored">Raspored casova</a> </li>
+                    <li><a style="color: azure" asp-area="" asp-controller="RasporedPolaganja" asp-action="PrikaziRaspored">Raspored polaganja</a> </li>
+                    <li><a style="color: azure" asp-area="" asp-controller="Zahtjevi" asp-action="PrikaziListuZahtjeva">Zahtjevi</a></li>
+                    <li><a style="color: azure" asp-area="" asp-controller="Plata" asp-action="PrikaziPlate">Plate</a></li>
+                    <li><a style="color: azure" asp-area="" asp-controller="Potvrda" asp-action="PrikaziPotvrde">Potvrde</a></li>
+
+
+
+                    <li><a style="color: azure; float:right" asp-area="" asp-controller="Autentifikacija" asp-action="LogOut">Odjavi se</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2020 - EAutoSkola</p> 
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+    $("#porukabox").fadeTo(2000,500).slideUp(500,function(){
+    $(this).remove();
+    });
+</script>

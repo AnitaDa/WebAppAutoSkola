@@ -1,0 +1,22 @@
+﻿@model EAutoSkola.ViewModel.ListaZahtjevaViewModel;
+<h3 style="color:antiquewhite">Novi zahtjevi</h3>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Datum podnosenja zahtjeva</th>
+            <th scope="col">Kandidat</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in @Model.Zahtjevi)
+        {
+            <tr>
+                <td>@Convert.ToDateTime(@i.DatumPodnosenjaZahtjeva).ToString("dd/MM/yyyy")</td>
+                <td>@i.LjekarskoUvjerenje.Kandidat.ImePrezime</td>
+                <td><a asp-controller="Zahtjevi" asp-action="DetaljiZahtjeva" asp-route-ZahtjevId="@i.Id">Detalji</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

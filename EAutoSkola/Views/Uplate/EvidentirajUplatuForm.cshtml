@@ -1,0 +1,46 @@
+﻿@model EAutoSkola.ViewModel.KorisniciViewModel;
+@{
+    ViewBag.Title = "EvidentirajUplatuForm";
+    Layout = "_LayoutReferent";
+}
+<div class="divForme">
+    <h2>Evidentiraj uplatu</h2>
+
+    <form action="/Uplate/DodajUplatu">
+
+        <div class="form-group">
+            <label>Datum uplate</label>
+            <input type="date" class="form-control" name="Datum">
+        </div>
+        <div class="form-group">
+            <label>Iznos</label>
+            <input type="text" class="form-control" name="IznosUplate">
+        </div>
+        <div class="form-group">
+            <label>Svrha uplate</label>
+            <input type="text" class="form-control" name="Svrha">
+        </div>
+        <div class="form-group">
+            <label>Odaberite kandidata</label>
+
+            <select class="form-control" name="KandidatId">
+
+                @foreach (var kand in @Model.Kandidati)
+                {
+                    <option value="@kand.Id">@kand.ImePrezime</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Referent koji unosi uplatu</label>
+
+            <select class="form-control" name="ReferentId">
+                @foreach (var refe in @Model.UposleniciTipUposlenika)
+                {
+                    <option value="@refe.Uposlenik.Id">@refe.Uposlenik.ImePrezime</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+    </form>
+    </div>

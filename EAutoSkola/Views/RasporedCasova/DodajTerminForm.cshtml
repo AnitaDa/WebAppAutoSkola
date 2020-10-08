@@ -1,0 +1,44 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewData["Title"] = "DodajTerminForm";
+    var RasporedId = ViewData["Raspored-key"];
+}
+
+    <div class="divForme">
+        <h2>Dodajte novi termin</h2>
+
+        <form class="forma" action="/RasporedCasova/Dodajtermin">
+            <input type="hidden" name="RasporedId" value="@Model.RasporedCasovaID" />
+            <div class="form-group">
+                <label>Datum: </label>
+                <input type="date" class="form-control" name="Datum">
+            </div>
+            <div class="form-group">
+                <label>Termin od:</label>
+                <input type="text" class="form-control" name="TerminOd">
+            </div>
+            <div class="form-group">
+                <label>TerminDo: </label>
+                <input type="text" class="form-control" name="TerminDo">
+            </div>
+            <div class="form-group">
+                <label>Odaberite vozilo</label>
+                <select class="form-control" name="VoziloId">
+                    @foreach (var vozila in Model.Vozila)
+                    {
+                        <option value="@vozila.Id">@vozila.RegistarskaOznaka</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Instruktor</label>
+                <select class="form-control" name="UposlenikId">
+                    @foreach (var refe in Model.UposlenikTipUposlenika)
+                    {
+                        <option value="@refe.Uposlenik.Id">@refe.Uposlenik.ImePrezime</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Sacuvaj</button>
+        </form>
+    </div>

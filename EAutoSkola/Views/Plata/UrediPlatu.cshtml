@@ -1,0 +1,35 @@
+﻿@model EAutoSkola.ViewModel.PlataViewModel;
+
+<div class="divForme">
+    <h2>Uredite platu</h2>
+    <form asp-action="SnimiPlatu">
+        <input type="hidden" class="form-control" Name="PlataId" value="@Model.Plata.Id">
+        <div class="form-group">
+            <label>Iznos</label>
+            <input type="text" class="form-control" Name="Iznos" value="@Model.Plata.Iznos">
+        </div>
+        <div class="form-group">
+            <label>Datum</label>
+            <input type="text" class="form-control" Name="Datum" value="@Model.Plata.Datum">
+        </div>
+        <label>Uposlenik</label>
+        <select Name="UposlenikId">
+            @foreach (var i in @Model.Uposlenici)
+            {
+                @if (@Model.Plata.UposlenikId == @i.Id)
+                {
+                    <option value="@i.Id" selected="selected">@i.ImePrezime</option>
+
+                }
+                else
+                {
+                    <option value="@i.Id">@i.ImePrezime</option>
+                }
+
+            }
+        </select>
+        
+        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+    </form>
+</div>
+

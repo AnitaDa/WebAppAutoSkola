@@ -1,0 +1,35 @@
+﻿@model EAutoSkola.ViewModel.PotvrdaViewModel;
+
+<h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+    Lista potvrda
+</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Datum polaganja</th>
+            <th scope="col">Broj bodova</th>
+            <th scope="col">Kandidat</th>
+            <th scope="col">Kategorija</th>
+        </tr>
+    </thead>
+
+    @foreach (var p in Model.Potvrde)
+    {
+        <tbody>
+            <tr>
+                <td>@Convert.ToDateTime(@p.DatumPolaganja).ToString("dd/MM/yyyy")</td>
+                <td>@p.BrojBodova</td>
+                <td>@p.Kandidat.ImePrezime</td>
+                <td>@p.Kategorija.Naziv</td>
+
+                <td><a asp-controller="Potvrda" asp-action="UrediPotvrdu" asp-route-PotvrdaId="@p.Id" class="btn btn-primary">Uredi</a></td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+<a asp-controller="Potvrda" asp-action="EvidentirajPotvrduForm" class="btn btn-primary">Evidentiraj potvrdu</a>

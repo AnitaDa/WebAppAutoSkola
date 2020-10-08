@@ -1,0 +1,10 @@
+﻿@{
+    if (User.IsInRole("Referent"))
+    {
+        Layout = "_LayoutReferent";
+    }
+    else
+    {
+        Layout = "_LayoutPocetni";
+    }
+}

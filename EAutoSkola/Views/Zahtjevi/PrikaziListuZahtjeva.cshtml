@@ -1,0 +1,38 @@
+﻿@model EAutoSkola.ViewModel.ListaZahtjevaViewModel;
+@{
+    ViewData["Title"] = "PrikaziListuZahtjeva";
+     Layout = "_LayoutReferent";
+}
+
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Lista zahtjeva
+    </h2>
+
+<table class="table"> 
+    <thead>
+        <tr>
+            <th>Datum podnosenja zahtjeva</th>
+            <th>Kandidat</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in @Model.Zahtjevi)
+        {
+            @if ((@i.LjekarskoUvjerenje.Kandidat.Status==false && @i.Procitano==false) || (@i.Procitano==false && @i.Odbacen==false))
+            {
+        <tr>
+            <td>@Convert.ToDateTime(@i.DatumPodnosenjaZahtjeva).ToString("dd/MM/yyyy")</td>
+            <td>@i.LjekarskoUvjerenje.Kandidat.ImePrezime</td>
+            <td><a asp-controller="Zahtjevi" asp-action="DetaljiZahtjeva" asp-route-ZahtjevId="@i.Id" class="btn btn-primary">Detalji</a></td>
+            @*<td><a asp-controller="Kandidat" asp-action="IzmjeniStatus" asp-route-KandidatId="@i.LjekarskoUvjerenje.KandidatId" asp-route-Odobren="true" class="btn btn-success">Odobri</a></td>
+            <td><a asp-controller="Kandidat" asp-action="IzmjeniStatus" asp-route-KandidatId="@i.LjekarskoUvjerenje.KandidatId" asp-route-Odobren="false" asp-route-ZahtjevId="@i.Id"   class="btn btn-danger">Odbaci</a></td>*@
+        </tr>
+            }
+
+        }
+    </tbody>
+</table>

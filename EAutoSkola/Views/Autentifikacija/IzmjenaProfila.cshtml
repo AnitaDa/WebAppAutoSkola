@@ -1,0 +1,24 @@
+﻿@model  EAutoSkola.ViewModel.IzmjenaPodatakaKorisnikaVM;
+
+    <div class="divForme">
+        <h2>Uredi profil</h2>
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                
+                <input asp-for="KorisnikId" type="hidden" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Korisnicko ime</label>
+                <input asp-for="KorisnickoIme" class="form-control">
+                <span asp-validation-for="KorisnickoIme"></span>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email"></span>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Sacuvaj</button>
+        </form>
+    </div>

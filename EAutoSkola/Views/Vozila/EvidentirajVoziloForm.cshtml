@@ -1,0 +1,58 @@
+﻿
+@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewData["Title"] = "EvidentirajVoziloForm";
+    Layout = "_LayoutReferent";
+}
+<div class="divForme">
+    <h2>Evidentiraj vozilo</h2>
+    <form enctype="multipart/form-data" asp-controller="Vozila" asp-action="DodajVozilo">
+
+        <div class="form-group">
+            <label>Godina proizvodnje</label>
+            <input type="text" class="form-control" asp-for="GodinaProizvodnje">
+
+        </div>
+        <div class="form-group">
+            <label>Marka automobila</label>
+            <input type="text" class="form-control" asp-for="Marka">
+        </div>
+        <div class="form-group">
+            <label>Model automobila</label>
+            <input type="text" class="form-control" asp-for="Model">
+        </div>
+        <div class="form-group">
+            <label>Registarska oznaka</label>
+            <input type="text" class="form-control" asp-for="RegOznaka">
+        </div>
+        <div>
+            <label>Odaberite kategoriju vozila</label>
+            <select id="inputState" class="form-control" asp-for="KategorijaId">
+                @foreach (var kate in @Model.Kategorije)
+                {
+                    <option value="@kate.Id">@kate.Naziv</option>
+                }
+
+            </select>
+        </div><br />
+        <div class="form-group">
+            <div class="custom-file">
+                <input asp-for="Photo" class="form-control custom-file-input">
+                <label class="custom-file-label">Choose File...</label>
+            </div>
+        </div>
+        <br /><br />
+        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+        @section Scripts{
+            <script>
+                $(document).ready(function () {
+                    $('.custom-file-input').on("change", function () {
+                        var filename = $(this).val().split("\\").pop();
+                        $(this).next('.custom-file-label').html(filename);
+                    });
+                });
+            </script>
+
+        }
+    </form>
+    </div>

@@ -1,0 +1,73 @@
+﻿@*@model EAutoSkola.ViewModel.DefaultViewModel;
+
+    @{
+        ViewData["Title"] = "PrikaziVozila";
+        Layout = "_LayoutReferent";
+
+    }*@
+@model ReflectionIT.Mvc.Paging.PagingList<EAutoSkola.Models.Vozilo>
+@using ReflectionIT.Mvc.Paging;
+@addTagHelper *,ReflectioIT.Mvc.Paging
+
+<html>
+<head>
+    <link href="~/css/PrikazVozila.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Vozila
+    </h2>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="carousel slide" id="myCarousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <ul class="thumbnails">
+                                @foreach (var i in @Model)
+                                {
+                                    var photoPath = "~/Images/" + (@i.PhotoPath ?? "noimage.jpg");
+                                    <li class="span3">
+                                        <div class="thumbnail">
+                                            <img class="card-img-top" src="@photoPath" asp-append-version="true" />
+                                        </div>
+                                        <div class="caption">
+                                            <div class="card-footer text-center">
+                                                <a asp-controller="Vozila" asp-action="DetaljiVozila" asp-route-VoziloId="@i.Id" class="btn btn-primary">Detalji</a>
+                                                <a asp-controller="Vozila" asp-action="UrediVoziloForm" asp-route-VoziloId="@i.Id" class="btn btn-primary ">Uredi</a>
+                                                <a asp-controller="Vozila" asp-action="ObrisiVozilo" asp-route-VoziloId="@i.Id" class="btn btn-danger ">Obrisi</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+
+                        </div>
+
+
+
+                    </div><!-- /#myCarousel -->
+
+                </div><!-- /.span12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+
+
+    </div>
+    <nav aria-label="Vozila navigation example">
+        @await this.Component.InvokeAsync("Pager", new { PagingList = this.Model })
+    </nav>
+    <nav>
+        <nav arial-label="Post Paging">
+            <vc:pager paging-list="@Model" />
+        </nav>
+    </nav>
+
+    <a asp-controller="Vozila" asp-action="EvidentirajVoziloForm" class="btn btn-primary">Dodaj vozilo</a>
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿
+@{
+    var JANUAR = ViewData["JANUAR"];
+    var FEBRUAR = ViewData["FEBRUAR"];
+    var MART = ViewData["MART"];
+    var APRIL = ViewData["APRIL"];
+    var MAJ = ViewData["MAJ"];
+    var JUN = ViewData["JUN"];
+    var JUL = ViewData["JUL"];
+    var AVGUST = ViewData["AVGUST"];
+    var SEPTEMBAR = ViewData["SEPTEMBAR"];
+    var OKTOBAR = ViewData["OKTOBAR"];
+    var NOVEMBAR = ViewData["NOVEMBAR"];
+    var DECEMBAR = ViewData["DECEMBAR"];
+    var G = ViewData["Godina"];
+
+}
+
+@model ReflectionIT.Mvc.Paging.PagingList<EAutoSkola.Models.Uplata>
+@using ReflectionIT.Mvc.Paging;
+@addTagHelper *,ReflectioIT.Mvc.Paging
+
+
+<h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+    Uplate
+</h2>
+<form style="float:left; width:100px;display:block" action="/Uplate/PrikaziUplate" method="post">
+    <div >
+        <input type="text" name="pretraga" class="form-control"/>
+        <div class="input-group-btn">
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </div>
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Datum uplate</th>
+            <th scope="col">Iznos</th>
+            <th scope="col">Svrha</th>
+            <th scope="col">Kandidat</th>
+            <th scope="col">Referent</th>
+        </tr>
+    </thead>
+
+    @foreach (var upl in @Model)
+    {
+        <tbody>
+
+            <tr>
+                <td>@Convert.ToDateTime(@upl.DatumUplate).ToString("dd/MM/yyyy")</td>
+                <td>@upl.Iznos</td>
+                <td>@upl.Svrha</td>
+                <td>@upl.Kandidat.ImePrezime</td>
+                <td>@upl.Uposlenik.ImePrezime</td>
+                <td><a asp-controller="Uplate" asp-action="UrediUplatu" asp-route-UplataId="@upl.Id" class="btn btn-primary">Izmjeni</a></td>
+                <td><a asp-controller="Uplate" asp-action="ObrisiUplatu" asp-route-UplataId="@upl.Id" class="btn btn-danger">Obrisi</a></td>
+            </tr>
+        </tbody>
+    }
+</table>
+<nav aria-label="Uplate navigation example">
+    @await this.Component.InvokeAsync("Pager", new { PagingList = this.Model })
+    <a style="float:right"  asp-controller="Uplate" asp-action="EvidentirajUplatuForm" class="btn btn-primary">Dodaj uplatu</a>
+</nav>
+
+<nav>
+    <nav arial-label="Post Paging">
+        <vc:pager paging-list="@Model" />
+    </nav>
+</nav>
+
+<br />
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Januar', 'Februar', 'Mart', 'April', 'Maj', 'Jun', 'Jul', 'Avgust', 'Septembar', 'Oktobar', 'Novembar', 'Decembar'],
+                datasets: [{
+                    label: '# Uplate',
+                    data: [@JANUAR,@FEBRUAR,@MART,@APRIL,@MAJ,@JUN,@JUL,@AVGUST,@SEPTEMBAR,@OKTOBAR,@NOVEMBAR,@DECEMBAR],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255,1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86,1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255,1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132,0.5)',
+                        'rgba(54, 162, 235,0.5)',
+                        'rgba(255, 206, 86,0.5)',
+                        'rgba(75, 192, 192,0.5)',
+                        'rgba(153, 102, 255,0.5)',
+                        'rgba(255, 159, 64,0.5)',
+                        'rgba(255, 99, 132,0.5)',
+                        'rgba(54, 162, 235,0.5)',
+                        'rgba(255, 206, 86,0.5)',
+                        'rgba(75, 192, 192,0.5)',
+                        'rgba(153, 102, 255,0.5)',
+                        'rgba(255, 159, 64,0.5)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+}
+
+<form action="/Uplate/PrikaziUplate"> 
+    <label>Godina</label>
+    <select name="Godina">
+        @for (var i = 2017; i <= DateTime.Now.Year; i++)
+        {
+            if (@i==(int)G)
+            {
+                <option value="@i" selected="selected">@i</option>
+            }
+            else
+            {
+                <option value="@i">@i</option>
+
+            }
+        }
+    </select>
+   <button type="submit" class="btn btn-primary">Odaberi</button>
+</form>
+
+<canvas id="myChart" style="background-color:#ffffff"></canvas>

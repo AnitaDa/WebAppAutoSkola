@@ -1,0 +1,27 @@
+﻿@model EAutoSkola.ViewModel.IzmjenaLozinkeViewModel;
+
+
+    <div class="divForme">
+        <h2> Izmjena lozinke</h2>
+      
+            <form  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TrenutnaLozinka"></label>
+                    <input asp-for="TrenutnaLozinka" class="form-control" />
+                    <span asp-validation-for="TrenutnaLozinka" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NovaLozinka"></label>
+                    <input asp-for="NovaLozinka" class="form-control" />
+                    <span asp-validation-for="NovaLozinka" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PotvrdnaLoznika"></label>
+                    <input asp-for="PotvrdnaLoznika" class="form-control" />
+                    <span asp-validation-for="PotvrdnaLoznika" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Sacuvaj</button>
+            </form>
+       
+    </div>

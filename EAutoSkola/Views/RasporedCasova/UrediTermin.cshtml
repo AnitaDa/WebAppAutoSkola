@@ -1,0 +1,60 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewData["Title"] = "UrediTermin";
+    Layout = "_LayoutReferent";
+}
+
+    <div class="divForme">
+        <h2>Uredi termin</h2>
+        <form action="/RasporedCasova/Dodajtermin">
+            <input type="hidden" name="TerminRasporedCasovaId" value="@Model.TerminRaspored.Id" />
+            <input type="hidden" name="RasporedId" value="@Model.TerminRaspored.RasporedCasovaId" />
+            <div class="form-group">
+                <label>Datum: </label>
+                <input type="date" class="form-control" name="Datum" value="@Model.TerminRaspored.Datum">
+            </div>
+            <div class="form-group">
+                <label>Termin od:</label>
+                <input type="text" class="form-control" name="TerminOd" value="@Model.TerminRaspored.TerminOd">
+            </div>
+            <div class="form-group">
+                <label>TerminDo: </label>
+                <input type="text" class="form-control" name="TerminDo" value="@Model.TerminRaspored.TerminDo">
+            </div>
+            <div class="form-group">
+                <label>Odaberite vozilo</label>
+                <select class="form-control" name="VoziloId">
+                    @foreach (var vozila in Model.Vozila)
+                    {
+                        @if (vozila.Id == Model.TerminRaspored.VoziloId)
+                        {
+                            <option value="@vozila.Id" selected="selected">@vozila.RegistarskaOznaka</option>
+                        }
+                        else
+                        {
+                            <option value="@vozila.Id">@vozila.RegistarskaOznaka</option>
+
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Instruktor</label>
+                <select class="form-control" name="UposlenikId">
+                    @foreach (var refe in Model.UposlenikTipUposlenika)
+                    {
+                        if (refe.Uposlenik.Id == Model.TerminRaspored.UposlenikId)
+                        {
+                            <option value="@refe.Uposlenik.Id" selected="selected">@refe.Uposlenik.ImePrezime</option>
+                        }
+                        else
+                        {
+                            <option value="@refe.Uposlenik.Id">@refe.Uposlenik.ImePrezime</option>
+                        }
+
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Sacuvaj</button>
+        </form>
+</div>

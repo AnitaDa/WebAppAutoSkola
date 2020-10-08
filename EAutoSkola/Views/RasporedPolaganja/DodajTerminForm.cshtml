@@ -1,0 +1,27 @@
+﻿@model EAutoSkola.ViewModel.RasporedPolaganjaVM;
+    <div class="divForme">
+        <h2>Dodajte novi termin</h2>
+
+        <form class="forma" action="/RasporedPolaganja/Dodajtermin">
+            <input type="hidden" name="RasporedId" value="@Model.RasporedId" />
+            <div class="form-group">
+                <label>Termin od:</label>
+                <input type="text" class="form-control" name="TerminOd">
+            </div>
+            <div class="form-group">
+                <label>TerminDo: </label>
+                <input type="text" class="form-control" name="TerminDo">
+            </div>
+            <div class="form-group">
+                <label>Kandidat</label>
+                <select class="form-control" name="KandidatId">
+                    @foreach (var k in Model.Kandidati)
+                    {
+                        <option value="@k.Id">@k.ImePrezime</option>
+                    }
+                </select>
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Sacuvaj</button>
+        </form>
+    </div>

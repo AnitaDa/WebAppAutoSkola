@@ -1,0 +1,58 @@
+﻿@model EAutoSkola.ViewModel.PotvrdaViewModel;
+
+    <div class="divForme">
+        <h2>Uredi potvrdu</h2>
+
+
+        <form action="/Potvrda/SnimiPotvrdu">
+            <input type="hidden" class="form-control" name="PotvrdaId" value="@Model.Potvrda.Id">
+            <div class="form-group">
+                <label>Datum polaganja</label>
+                <input type="date" class="form-control" name="Datum" value="@Model.Potvrda.DatumPolaganja">
+            </div>
+            <div class="form-group">
+                <label>Bodovi</label>
+                <input type="text" class="form-control" name="Bodovi" value="@Model.Potvrda.BrojBodova">
+            </div>
+           
+            <div class="form-group">
+                <label>Kandidat</label>
+
+                <select class="form-control" name="KandidatId">
+
+                    @foreach (var kand in @Model.Kandidati)
+                    {
+                        if (@Model.Potvrda.KandidatId == kand.Id)
+                        {
+                            <option value="@kand.Id" selected="selected">@kand.ImePrezime</option>
+
+
+
+                        }
+                        else
+                        {
+                            <option value="@kand.Id">@kand.ImePrezime</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kategorija</label>
+
+                <select class="form-control" name="KategorijaId">
+                    @foreach (var kat in @Model.Kategorije)
+                    {
+                        if (kat.Id == @Model.Potvrda.KategorijaId)
+                        {
+                            <option value="@kat.Id" selected="selected">@kat.Naziv</option>
+                        }
+                        else
+                        {
+                            <option value="@kat.Id" >@kat.Naziv</option>
+                        }
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn bg-primary">Sacuvaj</button>
+        </form>
+    </div>

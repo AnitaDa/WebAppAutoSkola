@@ -1,0 +1,20 @@
+﻿@model EAutoSkola.ViewModel.KategorijeViewModel;
+@{
+    ViewData["Title"] = "UrediKategoriju";
+    Layout = "_LayoutReferent";
+}
+<div class="divForme">
+    <h2>Uredite kategoriju</h2>
+    <form action="/Kategorija/DodajUredjenuKategoriju">
+        <input type="hidden" class="form-control" name="KategorijaId" value="@Model.Kategorija.Id">
+        <div class="form-group">
+            <label>Naziv</label>
+            <input type="text" class="form-control" name="Naziv" value="@Model.Kategorija.Naziv">
+        </div>
+        <div class="form-group">
+            <label>Opis</label>
+            <input type="text" class="form-control" name="Opis" value="@Model.Kategorija.Opis">
+        </div>
+        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+    </form>
+    </div>

@@ -1,0 +1,109 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff)!important;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+.table, tbody{
+    background-color:#ffffff!important;
+}
+/*Registracija forma*/
+form{
+    width:450px!important;
+    margin:auto;
+}
+.divForme {
+    border: 1px solid #ffffff;
+    width: 550px;
+    margin:auto;
+    padding-bottom: 40px;
+    margin-top:20px;
+}
+.divForme h2 {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-color: #00c6ff;
+    width: 450px;
+    margin: 50px auto 10px;
+    padding:10px;
+}
+
+label{
+    color:#ffffff;
+}
+.detaljiVozila{
+    border:1px dotted #ffffff;
+    margin:20px auto;
+    width:900px;
+}
+#divSlikaVozila img {
+    width:450px;
+    height:350px;
+    margin: 10px auto!important;
+
+    /*vertical-align:text-bottom;*/
+}
+#divSlikaVozila {
+    width: 50%;
+    display: inline-block;
+    margin-left:20px;
+}
+#textDetaliVozila {
+    width: 25%;
+    display: inline-block;
+    position:absolute;
+    margin-bottom:70px;
+}
+#textDetaliVozila h4{
+    border:1px solid #ffffff;
+    padding:10px;
+    color:azure;
+}
+.spoljni h2 {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    background-color: #00c6ff;
+    width: 900px;
+    margin: 10px auto 10px;
+    padding: 10px;
+}
+/*.centered-form {
+    margin-top: 60px;
+}
+
+    .centered-form .panel {
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+    }*/

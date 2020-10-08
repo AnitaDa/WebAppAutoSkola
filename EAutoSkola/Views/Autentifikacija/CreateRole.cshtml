@@ -1,0 +1,14 @@
+﻿@model EAutoSkola.ViewModel.CreateRoleViewModel;
+@{
+    ViewData["Title"] = "CreateRole";
+}
+
+<h2>Kreiraj rolu</h2>
+
+<form method="post">
+    <div class="form-group">
+        <input asp-for="RoleName" class="form-control" placeholder="Ime role *" />
+        <span asp-validation-for="RoleName" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btnRegister" value="Kreiraj" />
+</form>

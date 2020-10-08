@@ -1,0 +1,29 @@
+﻿@model EAutoSkola.ViewModel.PlataViewModel;
+@{
+    ViewData["Title"] = "EvidentiajPlatu";
+    Layout = "_LayoutReferent";
+}
+<div class="divForme">
+    <h2>Evidentiaj platu</h2>
+    <form action="/Plata/SnimiPlatu" >
+        <div class="form-group">
+            <label>Iznos</label>
+            <input type="text"  Name="Iznos"  class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>Datum</label>
+            <input type="date"  Name="Datum"  class="form-control" >
+        </div>
+        <div class="form-group">
+            <label>Uposlenik</label>
+            <select class="form-control" Name="UposlenikId">
+                @foreach (var uposlenici in @Model.Uposlenici)
+                {
+                    <option value="@uposlenici.Id">@uposlenici.ImePrezime</option>
+                }
+            </select>
+        </div><br />
+
+        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+    </form>
+</div>

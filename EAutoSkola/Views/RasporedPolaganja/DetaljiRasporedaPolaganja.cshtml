@@ -1,0 +1,42 @@
+﻿ @model EAutoSkola.ViewModel.RasporedPolaganjaVM;
+
+ <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Detaljne informacije o terminima
+    </h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Od</th>
+            <th scope="col">Do</th>
+            <th scope="col">Kandidat</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @if (Model.Termini.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    Trenutno ne postoje evidentirani termini
+                </td>
+            </tr>
+        }
+        @foreach (var ras in @Model.Termini)
+        {
+            <tr>
+                <td>@ras.TerminOd</td>
+                <td>@ras.TerminDo</td>
+                <td>@ras.Kandidat.ImePrezime</td>
+                <td><a asp-controller="RasporedPolaganja" asp-action="UrediTermin" asp-route-TerminId="@ras.Id" class="btn btn-primary">Izmjeni</a></td>
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<a asp-controller="RasporedPolaganja" asp-action="DodajTerminForm" asp-route-RasporedId="@Model.RasporedId" class="btn btn-primary">Dodaj termin</a>

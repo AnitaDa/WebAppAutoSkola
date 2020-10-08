@@ -1,0 +1,28 @@
+﻿@model EAutoSkola.ViewModel.DetaljiZahtjevaViewModel;
+@{
+    ViewData["Title"] = "DetaljiZahtjeva";
+    Layout = "_LayoutReferent";
+}
+
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Detalji zahtjeva
+    </h2>
+<table class="table">
+    <tbody>
+        <tr><th>Kandidat</th><td>@Model.Kandidat</td></tr>
+        <tr><th>Datum podnosenja zahtjeva</th><td>@Convert.ToDateTime(@Model.DatumPodnosenja).ToString("dd/MM/yyyy") </td></tr>
+        <tr><th>Ljekarsko uvjerenje</th><td><a asp-controller="LjekarskoUvjerenje" asp-action="PrikaziLjekarskoUvjerenje" asp-route-LjekarskoID="@Model.LjekarskoUvjerenjeId "class="btn btn-primary">Prikazi ljekarsko uvjerenje</a></td></tr>
+        <tr><th>Usluga</th><td>@Model.NazivUsluge</td></tr>
+        <tr><th>Kategorija</th><td>@Model.Kategorija</td></tr>
+        <tr>
+            <th>
+          <a asp-controller="Kandidat" asp-action="IzmjeniStatus" asp-route-KandidatId="@Model.KandidatId" asp-route-Odobren="true" class="btn btn-success">Odobri</a>
+          
+            <th><a asp-controller="Kandidat" asp-action="IzmjeniStatus" asp-route-KandidatId="@Model.KandidatId" asp-route-Odobren="false" asp-route-ZahtjevId="@Model.ZahtjevId" class="btn btn-danger">Odbaci</a></th>
+          
+        </tr>
+    </tbody>
+</table>

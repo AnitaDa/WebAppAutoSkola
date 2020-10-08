@@ -1,0 +1,33 @@
+﻿@model EAutoSkola.ViewModel.PotvrdaViewModel;
+
+<div class="divForme">
+    <h2>Evidentiaj potvrdu</h2>
+    <form action="/Potvrda/SnimiPotvrdu">
+        <div class="form-group">
+            <label>Datum izdavanja</label>
+            <input type="date" Name="Datum" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Broj bodova</label>
+            <input type="text" Name="Bodovi" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Kategorija</label>
+            <select class="form-control" Name="KategorijaId">
+                @foreach (var kategorije in @Model.Kategorije)
+                {
+                    <option value="@kategorije.Id">@kategorije.Naziv</option>
+                }
+            </select>
+        </div>
+        <label>Kandidat</label>
+        <select class="form-control" Name="KandidatId">
+            @foreach (var kandidat in @Model.Kandidati)
+            {
+                <option value="@kandidat.Id">@kandidat.ImePrezime</option>
+            }
+        </select>
+    
+<button type="submit" class="btn btn-primary">Sacuvaj</button>
+        </form>
+    </div>

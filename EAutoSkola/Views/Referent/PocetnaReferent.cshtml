@@ -1,0 +1,117 @@
+﻿@model EAutoSkola.ViewModel.StatistikaViewModel;
+@{
+    Layout = "_LayoutReferentPocetna";
+    var profil = ViewBag.Profil;
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+</head>
+<html>
+<body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+
+
+                <li>
+                    <a asp-controller="Kategorija" asp-action="PrikaziKategorije"><span class="pull-left"><img class="slika" src="~/images/kategorije.png" /></span>Kategorije</a>
+                </li>
+                <li>
+                    <a asp-controller="Usluge" asp-action="PrikaziUsluge"> <span class="pull-left"><img class="slika" src="~/images/Usluge.png" /></span>Usluge</a>
+                </li>
+                <li>
+                    <a asp-controller="Vozila" asp-action="PrikaziVozila"><span class=" pull-left"><img class="slika" src="~/images/car.png" /></span>Vozila</a>
+                </li>
+                <li>
+                    <a asp-controller="Uplate" asp-action="PrikaziUplate"><span class=" pull-left"><img class="slika" src="~/images/money.png" /></span>Uplate</a>
+                </li>
+                <li>
+                    <a><span class="pull-left"><img class="slika" src="~/images/raspored.png" /></span>Raspored</a>
+                    <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                        <li><a asp-controller="RasporedCasova" asp-action="PrikaziRaspored">Raspored časova</a></li>
+                        <li><a asp-controller="RasporedPolaganja" asp-action="PrikaziRaspored">Raspored polaganja</a></li>
+                    </ul>
+                <li>
+                    <a asp-controller="Zahtjevi" asp-action="PrikaziListuZahtjeva"><span class=" pull-left"><img class="slika" src="~/images/icon1.png" /></span>Zahtjevi</a>
+                </li>
+                <li>
+                    <a asp-controller="Plata" asp-action="PrikaziPlate"><span class=" pull-left"><img class="slika" src="~/images/plate.png" /></span>Plate</a>
+                </li>
+                <li>
+                    <a asp-controller="Potvrda" asp-action="PrikaziPotvrde"><span class=" pull-left"><img class="slika" src="~/images/potvrde.png" /></span>Potvrde</a>
+                </li>
+
+                <li>
+                    <a><span class=" pull-left"><img class="slika" src="~/images/podesavanje.png" /></span>Podesavanje profila</a>
+                    <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                        <li><a asp-controller="Autentifikacija" asp-action="IzmjenaLozinke">Izmjeni lozinku</a></li>
+                        <li><a asp-controller="Autentifikacija" asp-action="PrikazKorisnickihPodataka">Izmjeni korisničke podatke</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a asp-controller="Autentifikacija" asp-action="LogOut"><span class=" pull-left"><img class="slika" height="24" width="24" src="~/images/icon2.png" /></span>Odjavi se</a>
+                </li>
+            </ul>
+        </div>
+
+        <!--Novi zahtjevi-->
+        @if (@Model.BrojZahtjeva > 0)
+        {
+
+            <a id="dugmeZahtjevi" class="btn btn-danger">Novi zahtjevi: @Model.BrojZahtjeva</a>
+
+            <hr />
+            <div style="border:2px solid #ffffff;width:500px" id="noviZahtjevi"></div>
+        }
+        <div id="projectFacts" class="sectionClass">
+            <div class="fullWidth eight columns">
+                <div class="projectFactsWrap ">
+                    <div class="item wow fadeInUpBig animated animated" data-number="378" style="visibility: visible;">
+                        <i class="fa fa-user"></i>
+                        <p id="number1" class="number">@Model.BrojKandidata</p>
+                        <span></span>
+                        <p>Kandidata</p>
+                    </div>
+                    <div class="item wow fadeInUpBig animated animated" data-number="26" style="visibility: visible;">
+                        <i class="fa fa-user"></i>
+                        <p id="number2" class="number">@Model.BrojUposlenika</p>
+                        <span></span>
+                        <p>Uposlenika</p>
+                    </div>
+                    <div class="item wow fadeInUpBig animated animated" data-number="36" style="visibility: visible;">
+                        <i class="fa fa-car"></i>
+                        <p id="number3" class="number">@Model.BrojVozila</p>
+                        <span></span>
+                        <p>Vozila</p>
+                    </div>
+                    <div class="item wow fadeInUpBig animated animated" data-number="21" style="visibility: visible;">
+                        <i class="fa fa-smile-o"></i>
+                        <p id="number4" class="number">@Model.Godina</p>
+                        <span></span>
+                        <p>Godina poslovanja</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+        </footer>
+    </div>
+</body>
+
+</html>
+@section Scripts{
+    <script src="~/js/PocetnaReferent.js"></script>
+    <script>
+        $("#dugmeZahtjevi").on('click', function (event) {
+            $.get("/Zahtjevi/NeprocitaniZahtjevi", function (rez) {
+                $("#noviZahtjevi").html(rez);
+            });
+        })
+
+
+    </script>
+}

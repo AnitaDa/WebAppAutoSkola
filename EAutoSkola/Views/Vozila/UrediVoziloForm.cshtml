@@ -1,0 +1,52 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    Layout = "_LayoutReferent";
+}
+<div class="divForme">
+    <h2>UrediVoziloForm</h2>
+    <form action="/Vozila/DodajVozilo">
+
+        <input type="hidden" class="form-control" name="VoziloId" value="@Model.Vozilo.Id">
+        <div class="form-group">
+            <label>Godina proizvodnje</label>
+            <input type="text" class="form-control" name="GodinaProizvodnje" value="@Model.Vozilo.GodinaProizvodnje">
+
+        </div>
+        <div class="form-group">
+            <label>Marka automobila</label>
+            <input type="text" class="form-control" name="Marka" value="@Model.Vozilo.Marka">
+        </div>
+        <div class="form-group">
+            <label>Model automobila</label>
+            <input type="text" class="form-control" name="Model" value="@Model.Vozilo.Model">
+        </div>
+        <div class="form-group">
+            <label>Registarska oznaka</label>
+            <input type="text" class="form-control" name="RegOznaka" value="@Model.Vozilo.RegistarskaOznaka">
+        </div>
+        <div>
+            <label>Odaberite kategoriju vozila</label>
+            <select id="inputState" class="form-control" name="KategorijaId">
+                @foreach (var kate in @Model.Kategorije)
+                {
+                    @if (kate.Id == @Model.Vozilo.KategorijaId)
+                    {
+                        <option value="@kate.Id" selected="selected">@kate.Naziv</option>
+                    }
+                    else
+                    {
+                        <option value="@kate.Id">@kate.Naziv</option>
+                    }
+
+                }
+
+            </select>
+
+        </div><br /><br />
+
+        <button type="submit" class="btn bg-primary">Sacuvaj</button>
+
+        }
+    </form>
+    </div>
+

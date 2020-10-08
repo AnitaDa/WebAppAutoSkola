@@ -1,0 +1,54 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewData["Title"] = "DetaljiRasporedCasovaForm";
+}
+
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Detaljne informacije o terminima
+    </h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Datum</th>
+            <th scope="col">Od</th>
+            <th scope="col">Do</th>
+            <th scope="col">Model vozila</th>
+            <th scope="col">Registarske oznake</th>
+            <th scope="col">Instruktor</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @if (Model.TerminRasporedaCasova.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    Trenutno ne postoje evidentirani termini
+                </td>
+            </tr>
+        }
+        @foreach (var ras in @Model.TerminRasporedaCasova)
+        {
+            <tr>
+
+                <td> @Convert.ToDateTime(@ras.Datum).ToString("MM/dd/yyyy")</td>
+                <td>@ras.TerminOd</td>
+                <td>@ras.TerminDo</td>
+                <td>@ras.Vozilo.Model</td>
+                <td>@ras.Vozilo.RegistarskaOznaka</td>
+                <td>@ras.Uposlenik.ImePrezime</td>
+
+
+                <td><a asp-controller="RasporedCasova" asp-action="UrediTermin" asp-route-TerminId="@ras.Id" class="btn btn-primary">Izmjeni</a></td>
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<a asp-controller="RasporedCasova" asp-action="DodajTerminForm" asp-route-RasporedId="@Model.RasporedCasovaID" class="btn btn-primary">Dodaj termin</a>

@@ -1,0 +1,32 @@
+﻿@model EAutoSkola.ViewModel.PrikazLjekarskogUvjerenjeViewModel;
+@{
+    ViewData["Title"] = "PrikaziLjekarskoUvjerenje";
+     Layout = "_LayoutReferent";
+}
+
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Ljekarsko uvjerenje
+    </h2>
+<table class="table">
+    <tbody>
+        <tr><th>Kandidat</th><td>@Model.Kandidat</td></tr>
+        <tr><th>Datum izdavanja</th><td> @Convert.ToDateTime( @Model.DatumIzdavanja).ToString("MM/dd/yyyy")</td></tr>
+        <tr><th>Datum vazenja</th><td>@Convert.ToDateTime(@Model.DatumVazenja).ToString("MM/dd/yyyy")</td></tr>
+        <tr>
+            <th>Sposoban za obuku</th>
+            @if (@Model.Sposoban)
+            {
+                <td class="btn btn-success">DA</td>
+            }
+            else
+            {
+                <td class="btn btn-danger">NE</td>
+            }
+        </tr>
+        <tr><th>Opis</th><td>@Model.Opis</td></tr>
+        <tr><th>Ljekarsko uvjerenje izdao </th><td>@Model.ZdrastveniRadnik</td></tr>
+    </tbody>
+</table>

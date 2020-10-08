@@ -1,0 +1,34 @@
+﻿@model EAutoSkola.ViewModel.PlataViewModel;
+
+<h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+    Plate
+</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Iznos</th>
+            <th scope="col">Datum</th>
+            <th scope="col">Uposlenik</th>
+        </tr>
+    </thead>
+
+    @foreach (var i in @Model.ListaPlata)
+    {
+        <tbody>
+          
+            <tr>
+                <td>@i.Iznos</td>
+                <td>@Convert.ToDateTime(@i.Datum).ToString("dd/MM/yyyy")</td>
+                <td>@i.Uposlenik.ImePrezime</td>
+                <td><a asp-controller="Plata" asp-action="UrediPlatu" asp-route-PlataId="@i.Id" class="btn btn-primary">Izmjeni</a></td>
+             </tr>
+        </tbody>
+    }
+</table>
+
+<a asp-controller="Plata" asp-action="EvidentirajPlatu" class="btn btn-primary">Evidentiraj platu</a>

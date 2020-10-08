@@ -1,0 +1,39 @@
+﻿@model EAutoSkola.ViewModel.UslugeViewModel;
+@{
+    ViewBag.Title = "PrikaziUsluge";
+}
+
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Usluge
+    </h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Naziv</th>
+            <th scope="col">Opis</th>
+            <th scope="col">Cijena</th>
+            <th scope="col">Kategorija</th>
+        </tr>
+    </thead>
+
+    @foreach (var usl in Model.Usluge)
+    {
+        <tbody>
+            <tr>
+                <td>@usl.Naziv</td>
+                <td>@usl.Opis</td>
+                <td>@usl.Cijena</td>
+                <td>@usl.Kategorija.Naziv</td>
+                <td><a asp-controller="Usluge" asp-action="UrediUslugu" asp-route-UslugaId="@usl.Id" class="btn btn-primary">Uredi</a></td>
+
+                <td><a asp-controller="Usluge" asp-action="ObrisiUslugu" asp-route-UslugaId="@usl.Id" class="btn btn-danger">Obrisi</a></td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+<a asp-controller="Usluge" asp-action="DodajUsluguForm"class="btn btn-primary">Dodaj uslugu</a>

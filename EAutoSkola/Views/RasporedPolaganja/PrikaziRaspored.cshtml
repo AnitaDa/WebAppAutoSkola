@@ -1,0 +1,26 @@
+﻿@model EAutoSkola.ViewModel.RasporedPolaganjaVM;
+
+<h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+    Raspored polaganja
+</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Datum polaganja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var raspored in @Model.ListaRasporeda)
+        {
+            <tr>
+                <td>@Convert.ToDateTime(@raspored.DatumPolaganja).ToString("dd/MM/yyyy")</td>
+                <td><a asp-controller="RasporedPolaganja" asp-action="DetaljiRasporedaPolaganja" asp-route-RasporedId="@raspored.Id" class="btn btn-primary">Detalji</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a asp-controller="RasporedPolaganja" asp-action="KreirajRaspored" class="btn btn-primary">Kreiraj novi raspored</a>

@@ -1,0 +1,30 @@
+﻿@model EAutoSkola.ViewModel.DefaultViewModel;
+@{
+    ViewData["Title"] = "PrikaziRaspored";
+     Layout = "_LayoutReferent";
+}
+
+    <h2 style=" color: #f9f9f9;
+    border: 2px solid #f9f9f9;
+    padding: 10px;
+    background-color: #00c6ff">
+        Raspored casova
+    </h2>
+<table class="table">
+  <thead class="thead-light">
+      <tr>
+      <th>Kandidat</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var raspored in Model.RasporedCasovaLista)
+      {
+      <tr>
+          <td>@raspored.Kandidat.ImePrezime</td>
+          <td><a asp-controller="RasporedCasova" asp-action="DetaljiRasporedCasova" asp-route-RasporedId="@raspored.Id" class="btn btn-primary">Detalji</a></td>
+      </tr>
+      }
+
+  </tbody>
+</table>
+<a asp-controller="RasporedCasova" asp-action="KreirajRaspoeredCasovaForm"  class="btn btn-primary">Dodaj raspored novom kandidatu</a>
