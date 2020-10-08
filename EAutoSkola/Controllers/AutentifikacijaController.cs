@@ -174,7 +174,7 @@ namespace EAutoSkola.Controllers
         {
            
             var novaPoruka = new MimeMessage();
-            novaPoruka.From.Add(new MailboxAddress("EAutoSkola", "anita96dautovic@gmail.com"));
+            novaPoruka.From.Add(new MailboxAddress("EAutoSkola", "proba6446@gmail.com"));
             novaPoruka.To.Add(new MailboxAddress(noviKorisnik.UserName, noviKorisnik.Email));
             if (IzmjenaLozinke == false)
             {
@@ -190,7 +190,7 @@ namespace EAutoSkola.Controllers
             using (var klijent=new SmtpClient())
             {
                 klijent.Connect("smtp.gmail.com", 587, false);
-                klijent.Authenticate("anita96dautovic@gmail.com", "Programiranje123");
+                klijent.Authenticate("proba6446@gmail.com", "ProbaAnita123");
                 klijent.Send(novaPoruka);
                 klijent.Disconnect(true);
             }
@@ -373,8 +373,5 @@ namespace EAutoSkola.Controllers
             };
             return View(m);
         }
-
-
     }
-  
  }

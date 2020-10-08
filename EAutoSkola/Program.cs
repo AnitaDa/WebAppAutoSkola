@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using EAutoSkola.EF;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,9 @@ namespace EAutoSkola
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+         
+            context.Database.Migrate();
+            DBInit.Seed(context);
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
